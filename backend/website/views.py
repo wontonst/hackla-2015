@@ -57,3 +57,7 @@ def mirror(request):
 def grid(request):
     if request.method == 'GET':
         return render(request, 'website/grid.html')
+
+def page(request):
+    if request.method == 'GET':
+        return render(request, 'website/page.html')
