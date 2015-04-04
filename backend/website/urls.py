@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^signup.html$', views.signup, name='signup'),
     url(r'^login.html$', views.login, name='login'),
+    url(r'^mirror.html$', views.mirror, name='mirror'),
 ]

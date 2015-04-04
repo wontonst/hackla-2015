@@ -44,3 +44,6 @@ def login(request):
                 auth.login(request, user)
                 return render(request, 'website/valid-login.html', 
                     { 'user': user })
+
+def mirror(request):
+    return render(request, 'website/mirror.html')

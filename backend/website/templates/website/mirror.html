@@ -1,0 +1,563 @@
+﻿{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>MindMe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="{% static "website/scripts/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "website/scripts/bootstrap/css/bootstrap-responsive.min.css" %}" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Icons -->
+    <link href="{% static "website/scripts/icons/general/stylesheets/general_foundicons.css" %}" media="screen" rel="stylesheet" type="text/css" />  
+    <link href="{% static "website/scripts/icons/social/stylesheets/social_foundicons.css" %}" media="screen" rel="stylesheet" type="text/css" />
+    <!--[if lt IE 8]>
+        <link href="{% static "website/scripts/icons/general/stylesheets/general_foundicons_ie7.css" %}" media="screen" rel="stylesheet" type="text/css" />
+        <link href="{% static "website/scripts/icons/social/stylesheets/social_foundicons_ie7.css" %}" media="screen" rel="stylesheet" type="text/css" />
+    <![endif]-->
+
+
+
+    <link href="http://fonts.googleapis.com/css?family=Chewy" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Terminal+Dosis+Light" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet" type="text/css">
+
+    <link href="{% static "website/styles/custom.css" %}" rel="stylesheet" type="text/css" />
+    <style>
+            @import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+            
+            body {
+                font-family: 'Lato';
+                background-color: #f0f0f0;
+                margin: 0px auto;
+                max-width: 1150px;
+            }
+            
+            #overlay {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                -o-transform : scaleX(-1);
+                -webkit-transform : scaleX(-1);
+                transform : scaleX(-1);
+                -ms-filter : fliph; /*IE*/
+                filter : fliph; /*IE*/
+
+                width : 600px;
+                height : 450px;
+            }
+
+            #videoel {
+                -o-transform : scaleX(-1);
+                -webkit-transform : scaleX(-1);
+                transform : scaleX(-1);
+                -ms-filter : fliph; /*IE*/
+                filter : fliph; /*IE*/
+
+                width : 600px;
+                height : 450px;
+            }
+            
+            #container {
+                position : relative;
+                width : 370px;
+                /*margin : 0px auto;*/
+            }
+            
+            #content {
+                margin-top : 50px;
+                margin-left : auto;
+                margin-right : auto;
+                max-width: 600px;
+            }
+            
+            #sketch, #filter {
+                display: none;
+            }
+            
+            h2 {
+                font-weight : 400;
+            }
+            
+            .btn {
+                font-family: 'Lato';
+                font-size: 16px;
+            }
+
+            #controls {
+                text-align : center;
+            }
+
+            #emotion_container {
+                width: 600px;
+            }
+
+            #emotion_icons {
+                height: 50px;
+                padding-left: 40px;
+            }
+
+            .emotion_icon {
+                width : 40px;
+                height : 40px;
+                margin-top: 5px;
+                /*margin-left : 13px;*/
+                margin-left : 35px;
+            }
+
+            #emotion_chart, #emotion_icons {
+                margin: 0 auto;
+                width : 400px;
+            }
+
+            #icon1, #icon2, #icon3, #icon4, #icon5, #icon6 {
+                visibility : hidden;
+            }
+
+            /* d3 */
+            .bar {
+                fill : steelblue;
+                fill-opacity : .9;
+            }
+
+        </style>
+        <script type="text/javascript">
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-32642923-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+</head>
+<body id="pageBody">
+<script src="{% static "website/scripts/js/utils.js"></script>
+<script src="{% static "website/scripts/js/clmtrackr.js"></script>
+<script src="{% static "website/scripts/js/model_pca_20_svm_emotionDetection.js"></script>
+<script src="{% static "website/scripts/js/Stats.js" %}"></script>
+<script src="{% static "website/scripts/js/d3.min.js" %}"></script>
+<script src="{% static "website/scripts/js/emotion_classifier.js" %}"></script>
+<script src="{% static "website/scripts/js/emotionmodel.js" %}"></script>
+
+<div id="divBoxed" class="container">
+
+    <div class="transparent-bg" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: -1;zoom: 1;"></div>
+
+    <div class="divPanel notop nobottom">
+            <div class="row-fluid">
+                <div class="span12">
+
+                    <div id="divLogo">
+                        <a href="index.html" id="divSiteTitle">MindMe</a><br />
+                        <a href="index.html" id="divTagLine">A Portable Smart Mirror</a>
+                    </div>
+
+	            </div>
+            </div>   
+            <div class="row-fluid">
+                <div class="span12">
+    					
+                    <div id="divMenuRight" class="pull-right">
+                    <div class="navbar">
+                        <button type="button" class="btn btn-navbar-highlight btn-large btn-primary" data-toggle="collapse" data-target=".nav-collapse">
+                            NAVIGATION <span class="icon-chevron-down icon-white"></span>
+                        </button>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav nav-pills ddmenu">
+                                <li class="dropdown"><a href="index.html">Home</a></li>
+                                <li class="dropdown">
+                                    <a href="page.html" class="dropdown-toggle">Sign Out<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle">Dropdown Item &nbsp;&raquo;</a>
+                                            <ul class="dropdown-menu sub-menu">
+                                                <li><a href="#">Dropdown Item</a></li>
+                                                <li><a href="#">Dropdown Item</a></li>
+                                                <li><a href="#">Dropdown Item</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Dropdown Item</a></li>
+                                        <li><a href="#">Dropdown Item</a></li>
+                                        <li><a href="#">Dropdown Item</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="grid.html">Grid</a></li>
+                                <li class="dropdown active"><a href="simple.html">Simple</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+
+	            </div>
+            </div>
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <div id="contentInnerSeparator"></div>
+                </div>
+            </div>
+    </div>
+
+    <div class="contentArea">
+
+        <div class="divPanel notop page-content">
+
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a> &nbsp;/&nbsp; <span>Mirror</span>
+            </div>
+
+            <div class="row-fluid">
+                <div class="span8" id="divMain">
+
+            <h2>Emotion detection example</h2>
+            <p>This a test of emotion detection based on parameter output from <em>clmtrackr</em>.</p>
+            <div id="container">
+                <video id="videoel" width="400" height="300" preload="auto" loop>
+                </video>
+                <canvas id="overlay" width="400" height="300"></canvas>
+            </div>
+            <canvas id="sketch" width="400" height="300"></canvas>
+            <div id="emotion_container">
+                <div id="emotion_icons">
+                    <img class="emotion_icon" id="icon1" src="./media/icon_angry.png">
+                    <img class="emotion_icon" id="icon2" src="./media/icon_sad.png">
+                    <img class="emotion_icon" id="icon3" src="./media/icon_surprised.png">
+                    <img class="emotion_icon" id="icon4" src="./media/icon_happy.png">
+                </div>
+                <div id='emotion_chart'></div>
+            </div>
+            <div id="controls">
+                <input class="btn" type="button" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton"></input>
+            </div>
+            <script>
+                var vid = document.getElementById('videoel');
+                var overlay = document.getElementById('overlay');
+                var overlayCC = overlay.getContext('2d');
+                
+                /********** check and set up video/webcam **********/
+
+                function enablestart() {
+                    var startbutton = document.getElementById('startbutton');
+                    startbutton.value = "start";
+                    startbutton.disabled = null;
+                }
+                
+                /*var insertAltVideo = function(video) {
+                    if (supports_video()) {
+                        if (supports_ogg_theora_video()) {
+                            video.src = "../media/cap12_edit.ogv";
+                        } else if (supports_h264_baseline_video()) {
+                            video.src = "../media/cap12_edit.mp4";
+                        } else {
+                            return false;
+                        }
+                        //video.play();
+                        return true;
+                    } else return false;
+                }*/
+                navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+                window.URL = window.URL || window.webkitURL || window.msURL || window.mozURL;
+
+                // check for camerasupport
+                if (navigator.getUserMedia) {
+                    // set up stream
+                    
+                    var videoSelector = {video : true};
+                    if (window.navigator.appVersion.match(/Chrome\/(.*?) /)) {
+                        var chromeVersion = parseInt(window.navigator.appVersion.match(/Chrome\/(\d+)\./)[1], 10);
+                        if (chromeVersion < 20) {
+                            videoSelector = "video";
+                        }
+                    };
+                
+                    navigator.getUserMedia(videoSelector, function( stream ) {
+                        if (vid.mozCaptureStream) {
+                            vid.mozSrcObject = stream;
+                        } else {
+                            vid.src = (window.URL && window.URL.createObjectURL(stream)) || stream;
+                        }
+                        vid.play();
+                    }, function() {
+                        //insertAltVideo(vid);
+                        alert("There was some problem trying to fetch video from your webcam. If you have a webcam, please make sure to accept when the browser asks for access to your webcam.");
+                    });
+                } else {
+                    //insertAltVideo(vid);
+                    alert("This demo depends on getUserMedia, which your browser does not seem to support. :(");
+                }
+
+                vid.addEventListener('canplay', enablestart, false);
+                
+                /*********** setup of emotion detection *************/
+
+                var ctrack = new clm.tracker({useWebGL : true});
+                ctrack.init(pModel);
+
+                function startVideo() {
+                    // start video
+                    vid.play();
+                    // start tracking
+                    ctrack.start(vid);
+                    // start loop to draw face
+                    drawLoop();
+                }
+                
+                function drawLoop() {
+                    requestAnimFrame(drawLoop);
+                    overlayCC.clearRect(0, 0, 400, 300);
+                    //psrElement.innerHTML = "score :" + ctrack.getScore().toFixed(4);
+                    if (ctrack.getCurrentPosition()) {
+                        ctrack.draw(overlay);
+                    }
+                    var cp = ctrack.getCurrentParameters();
+                    
+                    var er = ec.meanPredict(cp);
+                    if (er) {
+                        updateData(er);
+                        for (var i = 0;i < er.length;i++) {
+                            if (er[i].value > 0.4) {
+                                document.getElementById('icon'+(i+1)).style.visibility = 'visible';
+                            } else {
+                                document.getElementById('icon'+(i+1)).style.visibility = 'hidden';
+                            }
+                        }
+                    }
+                }
+                
+                var ec = new emotionClassifier();
+                ec.init(emotionModel);
+                var emotionData = ec.getBlank();    
+                
+                /************ d3 code for barchart *****************/
+
+                var margin = {top : 20, right : 20, bottom : 10, left : 40},
+                    width = 400 - margin.left - margin.right,
+                    height = 100 - margin.top - margin.bottom;
+
+                var barWidth = 30;
+
+                var formatPercent = d3.format(".0%");
+                
+                var x = d3.scale.linear()
+                    .domain([0, ec.getEmotions().length]).range([margin.left, width+margin.left]);
+
+                var y = d3.scale.linear()
+                    .domain([0,1]).range([0, height]);
+
+                var svg = d3.select("#emotion_chart").append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                
+                svg.selectAll("rect").
+                  data(emotionData).
+                  enter().
+                  append("svg:rect").
+                  attr("x", function(datum, index) { return x(index); }).
+                  attr("y", function(datum) { return height - y(datum.value); }).
+                  attr("height", function(datum) { return y(datum.value); }).
+                  attr("width", barWidth).
+                  attr("fill", "#2d578b");
+
+                svg.selectAll("text.labels").
+                  data(emotionData).
+                  enter().
+                  append("svg:text").
+                  attr("x", function(datum, index) { return x(index) + barWidth; }).
+                  attr("y", function(datum) { return height - y(datum.value); }).
+                  attr("dx", -barWidth/2).
+                  attr("dy", "1.2em").
+                  attr("text-anchor", "middle").
+                  text(function(datum) { return datum.value;}).
+                  attr("fill", "white").
+                  attr("class", "labels");
+                
+                svg.selectAll("text.yAxis").
+                  data(emotionData).
+                  enter().append("svg:text").
+                  attr("x", function(datum, index) { return x(index) + barWidth; }).
+                  attr("y", height).
+                  attr("dx", -barWidth/2).
+                  attr("text-anchor", "middle").
+                  attr("style", "font-size: 12").
+                  text(function(datum) { return datum.emotion;}).
+                  attr("transform", "translate(0, 18)").
+                  attr("class", "yAxis");
+
+                function updateData(data) {
+                    // update
+                    var rects = svg.selectAll("rect")
+                        .data(data)
+                        .attr("y", function(datum) { return height - y(datum.value); })
+                        .attr("height", function(datum) { return y(datum.value); });
+                    var texts = svg.selectAll("text.labels")
+                        .data(data)
+                        .attr("y", function(datum) { return height - y(datum.value); })
+                        .text(function(datum) { return datum.value.toFixed(1);});
+
+                    // enter 
+                    rects.enter().append("svg:rect");
+                    texts.enter().append("svg:text");
+
+                    // exit
+                    rects.exit().remove();
+                    texts.exit().remove();
+                }
+
+                /******** stats ********/
+
+                stats = new Stats();
+                stats.domElement.style.position = 'absolute';
+                stats.domElement.style.top = '0px';
+                document.getElementById('container').appendChild( stats.domElement );
+
+                // update stats on every iteration
+                document.addEventListener('clmtrackrIteration', function(event) {
+                    stats.update();
+                }, false);
+                
+            </script>
+              
+               
+               
+                
+         </div> 
+    </div>
+
+                </div>
+                <div class="span4 sidebar">
+
+                    <div class="sidebox">
+                        <h3 class="sidebox-title">Sample Sidebar Content</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and <a href="http://www.oswt.co.uk/">typesetting industry</a>. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>                       
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div id="footerInnerSeparator"></div>
+        </div>
+    </div>
+
+    <div id="footerOuterSeparator"></div>
+
+    <div id="divFooter" class="footerArea">
+
+        <div class="divPanel">
+
+            <div class="row-fluid">
+                <div class="span3" id="footerArea1">
+                
+                    <h3>About Company</h3>
+
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>
+                    
+                    <p> 
+                        <a href="#" title="Terms of Use">Terms of Use</a><br />
+                        <a href="#" title="Privacy Policy">Privacy Policy</a><br />
+                        <a href="#" title="FAQ">FAQ</a><br />
+                        <a href="#" title="Sitemap">Sitemap</a>
+                    </p>
+
+                </div>
+                <div class="span3" id="footerArea2">
+
+                    <h3>Recent Blog Posts</h3> 
+                    <p>
+                        <a href="http://www.oswt.co.uk/" title="">Lorem Ipsum is simply dummy text</a><br />
+                        <span style="text-transform:none;">2 hours ago</span>
+                    </p>
+                    <p>
+                        <a href="http://www.oswt.co.uk/" title="">Duis mollis, est non commodo luctus</a><br />
+                        <span style="text-transform:none;">5 hours ago</span>
+                    </p>
+                    <p>
+                        <a href="http://www.oswt.co.uk/" title="">Maecenas sed diam eget risus varius</a><br />
+                        <span style="text-transform:none;">19 hours ago</span>
+                    </p>
+                    <p>
+                        <a href="http://www.oswt.co.uk/" title="">VIEW ALL POSTS</a>
+                    </p>
+
+                </div>
+                <div class="span3" id="footerArea3">
+
+                    <h3>Sample Footer Content</h3> 
+                    <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+
+                </div>
+                <div class="span3" id="footerArea4">
+
+                    <h3>Get in Touch</h3>  
+                                                               
+                    <ul id="contact-info">
+                    <li>                                    
+                        <i class="general foundicon-phone icon"></i>
+                        <span class="field">Phone:</span>
+                        <br />
+                        (123) 456 7890 / 456 7891                                                                      
+                    </li>
+                    <li>
+                        <i class="general foundicon-mail icon"></i>
+                        <span class="field">Email:</span>
+                        <br />
+                        <a href="mailto:info@yourdomain.com" title="Email">info@yourdomain.com</a>
+                    </li>
+                    <li>
+                        <i class="general foundicon-home icon" style="margin-bottom:50px"></i>
+                        <span class="field">Address:</span>
+                        <br />
+                        123 Street<br />
+                        12345 City, State<br />
+                        Country
+                    </li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <br /><br />
+            <div class="row-fluid">
+                <div class="span12">
+                    <p class="copyright">
+                        Copyright © 2013 Your Company. All Rights Reserved. Thanks to <a href="http://www.oswt.co.uk/">oswt</a>
+                    </p>
+
+                    <p class="social_bookmarks">
+                        <a href="#"><i class="social foundicon-facebook"></i> Facebook</a>
+			<a href="https://twitter.com/oswt"><i class="social foundicon-twitter"></i> Twitter</a>
+			<a href="#"><i class="social foundicon-pinterest"></i> Pinterest</a>
+			<a href="#"><i class="social foundicon-rss"></i> Rss</a>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<br /><br /><br />
+
+<script src="{% static "website/scripts/jquery-1.8.2.min.js" %}" type="text/javascript"></script> 
+<script src="{% static "website/scripts/bootstrap/js/bootstrap.min.js" %}" type="text/javascript"></script>
+<script src="{% static "website/scripts/default.js" %}" type="text/javascript"></script>
+
+
+
+
+
+</body>
+</html>
