@@ -241,8 +241,21 @@
             </div>
             <div id="controls">
                 <input class="btn" type="button" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton"></input>
+
+                <input class="btn" type="button" value="finish session" disabled="disabled" onclick="finishSession()" id="endbutton"></input>
             </div>
             <script>
+                var updateNum = 0;
+                //Sums of Emotional Variables
+                var happySum = 0;
+                var sadSum = 0;
+                var angrySum = 0;
+                var surprisedSum = 0;
+                //Avgs of Emotional Variables
+                var happyAvg = 0;
+                var sadAvg = 0;
+                var angryAvg = 0;
+                var surprisedAvg = 0;
                 var vid = document.getElementById('videoel');
                 var overlay = document.getElementById('overlay');
                 var overlayCC = overlay.getContext('2d');
@@ -253,6 +266,20 @@
                     var startbutton = document.getElementById('startbutton');
                     startbutton.value = "start";
                     startbutton.disabled = null;
+                }
+
+                function finishSession() {
+                    happyAvg = happySum / updateNum;
+                    angryAvg = angrySum / updateNum;
+                    surprisedAvg = surprisedSum / updateNum;
+                    sadAvg = sadSum / updateNum;
+
+                    //For now, we are logging. Eventually, we will integrate this by sending information to server.
+                    console.log("Happy: " + happyAvg);
+                    console.log("Angry: " +angryAvg);
+                    console.log("Surprised: " +surprisedAvg);
+                    console.log("Sad: " +sadAvg);
+                    //window.location = 'page.html'
                 }
                 
                 /*var insertAltVideo = function(video) {
@@ -313,6 +340,13 @@
                     ctrack.start(vid);
                     // start loop to draw face
                     drawLoop();
+                    //disable the start video button
+                    var startbutton = document.getElementById('startbutton');
+                    startbutton.disabled = true;
+                    //enable the finish session button
+                    var endbutton = document.getElementById('endbutton');
+                    endbutton.disabled = null;
+
                 }
                 
                 function drawLoop() {
@@ -396,8 +430,37 @@
                   attr("transform", "translate(0, 18)").
                   attr("class", "yAxis");
 
+                function captureData(data) {
+                    for (i = 0; i<data.length; i++ ) {
+
+                        if (data[i].emotion == "happy") {
+                            happySum += data[i].value;
+                        }
+
+                        else if (data[i].emotion == "surpised") {
+                            surprisedSum += data[i].value;
+                        }
+
+                         else if (data[i].emotion == "angry") {
+                            angrySum += data[i].value;
+                        }
+
+                         else if (data[i].emotion == "sad") {
+                            sadSum += data[i].value;
+                        }
+
+
+                        
+                    }
+                }
+
                 function updateData(data) {
-                    // update
+                    //Increment the Update Num
+                    updateNum = updateNum + 1;
+                    //Print Update Num
+                    //console.log(updateNum);
+                    //Link to Capture Data function
+                    captureData(data);
                     var rects = svg.selectAll("rect")
                         .data(data)
                         .attr("y", function(datum) { return height - y(datum.value); })
