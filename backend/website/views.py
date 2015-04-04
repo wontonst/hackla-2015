@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 
 # Create your views here.
 def index(request):
@@ -24,3 +25,17 @@ def signup(request):
     else:
         return render(request, 'website/signup.html', {})
 
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        if '@' in username:
+            user = authenticate(username=username, password=password)
+        else:
+            user = authenticate(username=username, password=password)
+
+        if user is None:
+            return render(request, 'website/invalidlogin.html', {})
+        else:
+            return render(request, 'website/validlogin.html', {'user': user})
