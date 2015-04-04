@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Easy Start - Page Components</title>
+    <title>MindMe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -18,6 +18,7 @@
     <!-- Icons -->
     <link href="scripts/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet" type="text/css" />  
     <link href="scripts/icons/social/stylesheets/social_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
+    <link type="text/css" rel="stylesheet" href="styles/youtube.css" />
     <!--[if lt IE 8]>
         <link href="scripts/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
         <link href="scripts/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
@@ -32,6 +33,13 @@
 
     <link href="styles/custom.css" rel="stylesheet" type="text/css" />
     <script src="scripts/js/Chart.js"></script>
+        <!-- include jQuery -->
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- include font awesome -->
+<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- jQuery Youtube Channels Playlist -->
+<script src="/scripts/js/ycp.js"></script>
+<!-- Custom style Youtube Channels Playlist -->
 </head>
 <body id="pageBody">
 
@@ -41,14 +49,26 @@ function doLoad() {
    console.log(localStorage.getItem("Sum"));
    fieldNameElement.innerHTML = "<span class='label label-success'>Happy</span>" + "   "+ Math.round(localStorage.getItem("Happy")/localStorage.getItem("Sum") * 100) + " %" + "<br>" + "<span class='label label-important'>Angry</span>"+"   " + Math.round(localStorage.getItem("Angry")/localStorage.getItem("Sum") * 100)+ " %"+ "<br>" + "<span class='label label-warning'>Sad</span>"+ "   " + Math.round(localStorage.getItem("Sad")/localStorage.getItem("Sum")*100) + " %" + "<br>" + "<span class='label label-default'>Surprised</span>"+ "   " + Math.round(localStorage.getItem("Surprised")/localStorage.getItem("Sum")*100);
 
-              // <p>
-                //<span class="label">Default</span> &nbsp;
-                //<span class="label label-success">Success</span> &nbsp;
-                //<span class="label label-warning">Warning</span> &nbsp;
-                //<span class="label label-important">Important</span> &nbsp;
-                //<span class="label label-info">Info</span> &nbsp;
-                //<span class="label label-inverse">Inverse</span>
-            //</p>
+    
+    var emotionDis = document.getElementById("moodDisplay");
+    if (localStorage.getItem("Happy") == Math.max(localStorage.getItem("Happy"), localStorage.getItem("Sad"), localStorage.getItem("Surprised"), localStorage.getItem("Angry")) )
+            {
+                emotionDis.innerHTML = "Your recommendations for a happy mood";
+            }
+    else if (localStorage.getItem("Sad") == Math.max(localStorage.getItem("Happy"), localStorage.getItem("Sad"), localStorage.getItem("Surprised"), localStorage.getItem("Angry")) )
+            {
+                emotionDis.innerHTML = "Your recommendations for a sad mood";
+            }
+    
+    else if (localStorage.getItem("Angry") == Math.max(localStorage.getItem("Happy"), localStorage.getItem("Sad"), localStorage.getItem("Surprised"), localStorage.getItem("Angry")) )
+            {
+                emotionDis.innerHTML = "Your recommendations for an angry mood";
+            }
+
+    if (localStorage.getItem("Surprised") == Math.max(localStorage.getItem("Happy"), localStorage.getItem("Sad"), localStorage.getItem("Surprised"), localStorage.getItem("Angry")) )
+            {
+                emotionDis.innerHTML = "Your recommendations for a surprised mood";
+            }
 
 }
 
@@ -128,21 +148,15 @@ else
         <div class="divPanel notop page-content">
 
             <div class="breadcrumbs">
-                <a href="index.html">Home</a> &nbsp;/&nbsp; <span>Page</span>
+                <a href="index.html">Home</a> &nbsp;/&nbsp; <span>Dashboard</span>
             </div>
 
             <div class="row-fluid">
                 <div class="span8">
 
-                    <h1>Page Components</h1>
+                    <h1>MindMe Dashboard</h1>
         
-                    <div class="hero-unit">	        
-                <h1>My Emotions Today</h1>
-                <br>  
-	            <p id="emotionText">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content.</p>  
-                <div id="canvas-holder">
-<canvas id="chart-area" width="250" height="250"/>
-</div>
+                    
 <script>
 var doughnutData = [
 {
@@ -175,75 +189,7 @@ var ctx = document.getElementById("chart-area").getContext("2d");
 window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
 };
 </script>
-	            <p>    
-                <a class="btn btn-primary btn-large">      Learn more    </a>  
-                </p>            
-            </div>
-            <br />
-
-            <h2>Labels</h2>
-            <p>
-                <span class="label">Default</span> &nbsp;
-                <span class="label label-success">Success</span> &nbsp;
-                <span class="label label-warning">Warning</span> &nbsp;
-                <span class="label label-important">Important</span> &nbsp;
-                <span class="label label-info">Info</span> &nbsp;
-                <span class="label label-inverse">Inverse</span>
-            </p>
-            <br />
-
-            <h2>Badges</h2>
-            <p>
-                <span class="badge">Default</span> &nbsp;
-                <span class="badge badge-success">Success</span> &nbsp;
-                <span class="badge badge-warning">Warning</span> &nbsp;
-                <span class="badge badge-important">Important</span> &nbsp;
-                <span class="badge badge-info">Info</span> &nbsp;
-                <span class="badge badge-inverse">Inverse</span>
-            </p>
-            <br />
-
-            <h2>Alert</h2>
-            <p>
-                <div class="alert alert-block">                          
-	                <h4>Warning!</h4>              
-	                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>            
-                </div>
-                <div class="alert alert-error">                            
-                    <strong>Oh snap!</strong> Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                </div>
-                <div class="alert alert-success">                           
-                    <strong>Well done!</strong> Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                </div>
-                <div class="alert alert-info">                          
-                    <strong>Heads up!</strong> Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                </div>
-            </p>
-            <br />
-
-            <h2>Thumbnails</h2>
-            <ul class="thumbnails">              
-	            <li class="span2"><a href="#" class="thumbnail"><img src="http://placehold.it/260x180" alt="" /></a></li>
-	            <li class="span2"><a href="#" class="thumbnail"><img src="http://placehold.it/260x180" alt="" /></a></li>          
-            </ul>
-            <p>
-                <img src="http://placehold.it/140x140" class="img-rounded" alt="" />&nbsp;
-                <img src="http://placehold.it/140x140" class="img-circle" alt="" />&nbsp;
-                <img src="http://placehold.it/140x140" class="img-polaroid" alt="" />&nbsp;
-            </p>
-            <br />
-
-
-            <div class="page-header">  
-	            <h1>Page header <small>Subtext for header</small></h1>
-            </div>
-            <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>          
-            <br />
-
-            <h2>Lead copy</h2>
-            <p class="lead">Lead copy here. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.</p> 
-            <br />
-
+	            
             <!--<h2>Dropdown</h2>
             <ul class="nav nav-pills">
                 <li class="dropdown">
@@ -259,210 +205,26 @@ window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
 
             <h2>Tabs</h2>
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
-                <li><a href="#profile" data-toggle="tab">Profile</a></li>
-                <li><a href="#settings" data-toggle="tab">Settings</a></li>
+                <li class="active"><a href="#today" data-toggle="tab">Today</a></li>
+                <li><a href="#alltime" data-toggle="tab">All time</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane fade in active" id="home">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <div class="tab-pane fade in active" id="today">
+                    <div class="hero-unit">         
+                        <h1>My Mirror Readings Today</h1>
+                        <br>  
+                        <p id="emotionText">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content.</p>  
+                        <div id="canvas-holder">
+                            <canvas id="chart-area" width="150" height="150"/>
+                        </div>
+                    </div>
                 </div>
-                <div class="tab-pane fade" id="profile">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                </div>
-                <div class="tab-pane fade" id="settings">
+
+                <div class="tab-pane fade" id="alltime">
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                 </div>
             </div>
             <br />
-
-            <h2>Accordion</h2>
-            <div class="accordion" id="accordion2">
-
-                <div class="accordion-group">
-                    <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                            Collapsible Group Item #1
-                        </a>
-                        </div>
-                        <div id="collapseOne" class="accordion-body collapse in">
-                        <div class="accordion-inner">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                        </div>
-                        </div>
-                    </div>
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                            Collapsible Group Item #2
-                        </a>
-                        </div>
-                        <div id="collapseTwo" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                        </div>
-                        </div>
-                    </div>
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-                            Collapsible Group Item #3
-                        </a>
-                        </div>
-                        <div id="collapseThree" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <br />
-
-                <h2>Buttons</h2>
-                <p>
-                    <a class="btn btn-large" href="#">Large button</a>
-                    <a class="btn" href="#">Default button</a>
-                    <a class="btn btn-small" href="#">Small button</a>
-                    <a class="btn btn-mini" href="#">Mini button</a>
-                </p>
-                <p>
-                    <a class="btn btn-primary" href="#">Primary</a>
-                    <a class="btn btn-secondary" href="#">Secondary</a>
-                    <a class="btn btn-info" href="#">Info</a>
-                    <a class="btn btn-success" href="#">Success</a>
-                    <a class="btn btn-warning" href="#">Warning</a>
-                    <a class="btn btn-danger" href="#">Danger</a>
-                    <a class="btn btn-inverse" href="#">Inverse</a>
-                </p>
-
-                <br />
-
-                <h2>Form</h2>
-
-                <form>
-
-                    <label>This is a label.</label>
-                    <input type="text" placeholder="Standard Input">
-
-                    <br /><br />
-
-                    <label class="checkbox">
-                        <input type="checkbox"> Check me out
-                    </label>
-
-                    <br />
-
-                    <label class="radio">
-                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                        Option one is this and that&mdash;be sure to include why it's great
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                        Option two can be something else and selecting it will deselect option one
-                    </label>
-
-                    <br />
-
-                    <label class="checkbox inline">
-                        <input type="checkbox" id="inlineCheckbox1" value="option1"> Option 1
-                    </label>
-                    <label class="checkbox inline">
-                        <input type="checkbox" id="inlineCheckbox2" value="option2"> Option 2
-                    </label>
-                    <label class="checkbox inline">
-                        <input type="checkbox" id="inlineCheckbox3" value="option3"> Option 3
-                    </label>
-
-                    <br /><br />
-
-                    <input class="input-mini" type="text" placeholder=".input-mini">
-                    <input class="input-small" type="text" placeholder=".input-small">
-                    <input class="input-medium" type="text" placeholder=".input-medium">
-                    <input class="input-large" type="text" placeholder=".input-large">
-                    <input class="input-xlarge" type="text" placeholder=".input-xlarge">
-                    <input class="input-xxlarge" type="text" placeholder=".input-xxlarge">
-
-                </form>
-
-                <h2>Modal</h2>
-
-                <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h3 id="myModalLabel">Modal Heading</h3>
-                    </div>
-                    <div class="modal-body">
-                        <h4>Text in a modal</h4>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-
-                <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>
-
-                <br /><br />
-
-                <h2>General Icons</h2>
-
-                <div class="row-fluid">
-                <div class="span4">
-                    <i class="general foundicon-settings"></i> .foundicon-settings<br />
-                    <i class="general foundicon-heart"></i> .foundicon-heart<br />
-                    <i class="general foundicon-star"></i> .foundicon-star<br />
-                    <i class="general foundicon-plus"></i> .foundicon-plus<br />
-                    <i class="general foundicon-minus"></i> .foundicon-minus<br />
-                    <i class="general foundicon-checkmark"></i> .foundicon-checkmark<br />
-                    <i class="general foundicon-remove"></i> .foundicon-remove<br />
-                    <i class="general foundicon-mail"></i> .foundicon-mail<br />
-                    <i class="general foundicon-calendar"></i> .foundicon-calendar<br />
-                    <i class="general foundicon-page"></i> .foundicon-page<br />
-                    <i class="general foundicon-tools"></i> .foundicon-tools<br />
-                    <i class="general foundicon-globe"></i> .foundicon-globe<br />
-                    <i class="general foundicon-home"></i> .foundicon-home<br />
-                    <i class="general foundicon-quote"></i> .foundicon-quote<br />
-                    <i class="general foundicon-people"></i> .foundicon-people<br />
-                    <i class="general foundicon-monitor"></i> .foundicon-monitor<br />
-                </div>
-                <div class="span4">    
-                    <i class="general foundicon-laptop"></i> .foundicon-laptop<br />
-                    <i class="general foundicon-phone"></i> .foundicon-phone<br />
-                    <i class="general foundicon-cloud"></i> .foundicon-cloud<br />
-                    <i class="general foundicon-error"></i> .foundicon-error<br />
-                    <i class="general foundicon-right-arrow"></i> .foundicon-right-arrow<br />
-                    <i class="general foundicon-left-arrow"></i> .foundicon-left-arrow<br />
-                    <i class="general foundicon-up-arrow"></i> .foundicon-up-arrow<br />
-                    <i class="general foundicon-down-arrow"></i> .foundicon-down-arrow<br />
-                    <i class="general foundicon-trash"></i> .foundicon-trash<br />
-                    <i class="general foundicon-add-doc"></i> .foundicon-add-doc<br />
-                    <i class="general foundicon-edit"></i> .foundicon-edit<br />
-                    <i class="general foundicon-lock"></i> .foundicon-lock<br />
-                    <i class="general foundicon-unlock"></i> .foundicon-unlock<br />
-                    <i class="general foundicon-refresh"></i> .foundicon-refresh<br />
-                    <i class="general foundicon-paper-clip"></i> .foundicon-paper-clip<br />
-                    <i class="general foundicon-video"></i> .foundicon-video<br />
-                </div>
-                <div class="span4">     
-                    <i class="general foundicon-photo"></i> .foundicon-photo<br />
-                    <i class="general foundicon-graph"></i> .foundicon-graph<br />
-                    <i class="general foundicon-idea"></i> .foundicon-idea<br />
-                    <i class="general foundicon-mic"></i> .foundicon-mic<br />
-                    <i class="general foundicon-cart"></i> .foundicon-cart<br />
-                    <i class="general foundicon-address-book"></i> .foundicon-address-book<br />
-                    <i class="general foundicon-compass"></i> .foundicon-compass<br />
-                    <i class="general foundicon-flag"></i> .foundicon-flag<br />
-                    <i class="general foundicon-location"></i> .foundicon-location<br />
-                    <i class="general foundicon-clock"></i> .foundicon-clock<br />
-                    <i class="general foundicon-folder"></i> .foundicon-folder<br />
-                    <i class="general foundicon-inbox"></i> .foundicon-inbox<br />
-                    <i class="general foundicon-website"></i> .foundicon-website<br />
-                    <i class="general foundicon-smiley"></i> .foundicon-smiley<br />
-                    <i class="general foundicon-search"></i> .foundicon-search<br />
-                </div>
-                </div>
-                <br />
 
                 <h2>Social Icons</h2>
 
@@ -505,143 +267,22 @@ window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
                 </div>
                 <br />
 
-            
-                <h2>Pagination</h2>
-
-                <div class="pagination pagination-large">
-                    <ul>
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>
-                <div class="pagination">
-                    <ul>
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>
-                <div class="pagination pagination-small">
-                    <ul>
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>
-                <div class="pagination pagination-mini">
-                    <ul>
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>
-                <br />
-
-                <h2>Media Object</h2>
-
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img src="http://placehold.it/64x64" class="img-rounded" />
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Media heading</h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div>
-
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img src="http://placehold.it/64x64" class="img-rounded" />
-                    </a>
-                    <div class="media-body">
-                    <h4 class="media-heading">Media heading</h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="http://placehold.it/64x64" class="img-rounded" />
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading">Media heading</h4>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br />
-
-                <h2>Media List</h2>
-
-                <ul class="media-list">
-                    <li class="media">
-                    <a class="pull-left" href="#">
-                        <img src="http://placehold.it/64x64" class="img-circle" />
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Media heading</h4>
-                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
-                        <!-- Nested media object -->
-                        <div class="media">
-                        <a class="pull-left" href="#">
-                            <img src="http://placehold.it/64x64" class="img-circle" />
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">Nested media heading</h4>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                            <!-- Nested media object -->
-                            <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="http://placehold.it/64x64" class="img-circle" />
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading">Nested media heading</h4>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                        <!-- Nested media object -->
-                        <div class="media">
-                        <a class="pull-left" href="#">
-                            <img src="http://placehold.it/64x64" class="img-circle" />
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">Nested media heading</h4>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                        </div>
-                        </div>
-                    </div>
-                    </li>
-                </ul>
-
-                </div>
+           
+           </div>
                 <div class="span4">
+                    <h2 id="moodDisplay"> Recommendations </h2>
 
-                    <div class="input-append">
-                        <input class="span9" id="appendedInputButton" size="16" type="text"><button class="btn" type="button">Go!</button>
+                    <br />
+
+                    <div id="ibacordotcom-content">
+                        <div class="ibacordotcom-unit ibacordotcom-vid-kenca">
+                            <div class="ibacordotcom_vid_play"> Hello?!
+                            </div>
+                        </div>
+                    <div class = "ibacordotcom-unit ibacordotcom-vid-katuhu">
+                    <div class="ibacordotcom_youtube_channels"></div>
+                        </div>
                     </div>
-
-                    <br />
-
-                    <h2>Quote / Testimonial</h2>
-
-                    <br />
 
                     <blockquote>
 	                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>
