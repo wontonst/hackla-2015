@@ -36,6 +36,6 @@ def login(request):
             user = authenticate(username=username, password=password)
 
         if user is None:
-            return render(request, 'website/invalidlogin.html', {})
+            return render(request, 'website/invalid-login.html', {})
         else:
-            return render(request, 'website/validlogin.html', {'user': user})
+            return render(request, 'website/valid-login.html', {'user': user})
