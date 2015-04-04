@@ -279,7 +279,11 @@
                     console.log("Angry: " +angryAvg);
                     console.log("Surprised: " +surprisedAvg);
                     console.log("Sad: " +sadAvg);
-                    //window.location = 'page.html'
+                    localStorage.setItem("Happy", happyAvg);
+                    localStorage.setItem("Angry", angryAvg);
+                    localStorage.setItem("Surprised", surprisedAvg);
+                    localStorage.setItem("Sad", sadAvg);
+                    window.location = 'page.html'
                 }
                 
                 /*var insertAltVideo = function(video) {
