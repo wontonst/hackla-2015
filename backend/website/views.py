@@ -53,3 +53,11 @@ def signin(request):
 def mirror(request):
     if request.method == 'GET':
         return render(request, 'website/mirror.html')
+
+def grid(request):
+    if request.method == 'GET':
+        return render(request, 'website/grid.html')
+
+def page(request):
+    if request.method == 'GET':
+        return render(request, 'website/page.html')
