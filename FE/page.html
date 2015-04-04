@@ -43,6 +43,9 @@
 </head>
 <body id="pageBody">
 
+<script type='text/javascript' src='http://creativesocialworker.tumblr.com/api/read/json?number=8&type=photo'></script>
+
+
 <script type="text/javascript">
 function doLoad() {
    var fieldNameElement = document.getElementById("emotionText");
@@ -51,23 +54,28 @@ function doLoad() {
 
     
     var emotionDis = document.getElementById("moodDisplay");
+    var tUmblr = document.getElementById("tumblr");
     if (localStorage.getItem("Happy") == Math.max(localStorage.getItem("Happy"), localStorage.getItem("Sad"), localStorage.getItem("Surprised"), localStorage.getItem("Angry")) )
             {
                 emotionDis.innerHTML = "Your recommendations for a happy mood";
+                tUmblr.innerHTML = "<iframe width='280' height='107' src='https://www.youtube.com/embed/j5-yKhDd64s?list=PLB8A0A36C6E4EE923' frameborder='0' allowfullscreen></iframe>" + "<br>" + "<iframe width='280' height='107' src='https://www.youtube.com/embed/y6Sxv-sUYtM?list=PLvnSQ3lF3-el3YKcqRbxJ1W1sXK6rqBpg' frameborder='0' allowfullscreen></iframe>";
             }
     else if (localStorage.getItem("Sad") == Math.max(localStorage.getItem("Happy"), localStorage.getItem("Sad"), localStorage.getItem("Surprised"), localStorage.getItem("Angry")) )
             {
                 emotionDis.innerHTML = "Your recommendations for a sad mood";
+                tUmblr.innerHTML = "<iframe width='280' height='107' src='https://www.youtube.com/embed/E4a82LRNdlQ?list=PL49743286D69CEFD0' frameborder='0' allowfullscreen></iframe>" + "<br>" + "<iframe width='280' height='107' src='https://www.youtube.com/embed/BzE1mX4Px0I?list=PL843272218EF0904B' frameborder='0' allowfullscreen></iframe>";
             }
     
     else if (localStorage.getItem("Angry") == Math.max(localStorage.getItem("Happy"), localStorage.getItem("Sad"), localStorage.getItem("Surprised"), localStorage.getItem("Angry")) )
             {
                 emotionDis.innerHTML = "Your recommendations for an angry mood";
+                tUmblr.innerHTML = "<iframe width='280' height='107' src='https://www.youtube.com/embed/jEHn1klnIpg?list=PLYyGHFw5TzevPUEn33HfjG7p-6tHSZneX' frameborder='0' allowfullscreen></iframe>" + "<br>" + "<iframe width='280' height='107' src='https://www.youtube.com/embed/CcsUYu0PVxY' frameborder='0' allowfullscreen></iframe>";
             }
 
     if (localStorage.getItem("Surprised") == Math.max(localStorage.getItem("Happy"), localStorage.getItem("Sad"), localStorage.getItem("Surprised"), localStorage.getItem("Angry")) )
             {
                 emotionDis.innerHTML = "Your recommendations for a surprised mood";
+                tUmblr.innerHTML = "<iframe width='280' height='107' src='https://www.youtube.com/embed/-UaW6zYQDQE?list=PL9A7F2559E096E47E' frameborder='0' allowfullscreen></iframe>" + "<br>" + "<iframe width='280' height='107' src='https://www.youtube.com/embed/-wfYPlTPaTU?list=PLR0UcAS54wZqCM6u5lfFihJcrYNc6C4Fy' frameborder='0' allowfullscreen></iframe>";
             }
 
 }
@@ -83,6 +91,8 @@ else
          window.onload = doLoad;
 }
 </script>
+
+
 
 <div id="divBoxed" class="container">
 
@@ -273,6 +283,8 @@ window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
                     <h2 id="moodDisplay"> Recommendations </h2>
 
                     <br />
+
+                    <div id="tumblr"> </div>
 
                     <div id="ibacordotcom-content">
                         <div class="ibacordotcom-unit ibacordotcom-vid-kenca">
