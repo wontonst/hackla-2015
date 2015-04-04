@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^signup.html$', views.signup, name='signup'),
     url(r'^signin.html$', views.signin, name='signin'),
     url(r'^mirror.html$', views.mirror, name='mirror'),
+    url(r'^grid.html$', views.grid, name='grid'),
 ]
