@@ -31,13 +31,24 @@
     <link href="http://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet" type="text/css">
 
     <link href="styles/custom.css" rel="stylesheet" type="text/css" />
+    <script src="scripts/js/Chart.js"></script>
 </head>
 <body id="pageBody">
 
 <script type="text/javascript">
 function doLoad() {
    var fieldNameElement = document.getElementById("emotionText");
-   fieldNameElement.innerHTML = "Happy: " + localStorage.getItem("Happy") + "Angry: " + localStorage.getItem("Angry");
+   console.log(localStorage.getItem("Sum"));
+   fieldNameElement.innerHTML = "<span class='label label-success'>Happy</span>" + "   "+ Math.round(localStorage.getItem("Happy")/localStorage.getItem("Sum") * 100) + " %" + "<br>" + "<span class='label label-important'>Angry</span>"+"   " + Math.round(localStorage.getItem("Angry")/localStorage.getItem("Sum") * 100)+ " %"+ "<br>" + "<span class='label label-warning'>Sad</span>"+ "   " + Math.round(localStorage.getItem("Sad")/localStorage.getItem("Sum")*100) + " %" + "<br>" + "<span class='label label-default'>Surprised</span>"+ "   " + Math.round(localStorage.getItem("Surprised")/localStorage.getItem("Sum")*100);
+
+              // <p>
+                //<span class="label">Default</span> &nbsp;
+                //<span class="label label-success">Success</span> &nbsp;
+                //<span class="label label-warning">Warning</span> &nbsp;
+                //<span class="label label-important">Important</span> &nbsp;
+                //<span class="label label-info">Info</span> &nbsp;
+                //<span class="label label-inverse">Inverse</span>
+            //</p>
 
 }
 
@@ -62,8 +73,8 @@ else
                 <div class="span12">
 
                     <div id="divLogo">
-                        <a href="index.html" id="divSiteTitle">Easy Start</a><br />
-                        <a href="index.html" id="divTagLine">Clean HTML5 Template..</a>
+                        <a href="index.html" id="divSiteTitle">MirrorMe</a><br />
+                        <a href="index.html" id="divTagLine">A Portable Smart Mirror.</a>
                     </div>
 
 	            </div>
@@ -126,8 +137,44 @@ else
                     <h1>Page Components</h1>
         
                     <div class="hero-unit">	        
-                <h1>Hello, world!</h1>  
-	            <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content.</p>  
+                <h1>My Emotions Today</h1>
+                <br>  
+	            <p id="emotionText">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content.</p>  
+                <div id="canvas-holder">
+<canvas id="chart-area" width="250" height="250"/>
+</div>
+<script>
+var doughnutData = [
+{
+value: localStorage.getItem("Angry"),
+color:"#F7464A",
+highlight: "#FF5A5E",
+label: "Angry"
+},
+{
+value: localStorage.getItem("Happy"),
+color: "#006600",
+highlight: "#5AD3D1",
+label: "Happy"
+},
+{
+value: localStorage.getItem("Sad"),
+color: "#FDB45C",
+highlight: "#FFC870",
+label: "Sad"
+},
+{
+value: localStorage.getItem("Surprised"),
+color: "#949FB1",
+highlight: "#A8B3C5",
+label: "Surprised"
+}
+];
+window.onload = function(){
+var ctx = document.getElementById("chart-area").getContext("2d");
+window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
+};
+</script>
 	            <p>    
                 <a class="btn btn-primary btn-large">      Learn more    </a>  
                 </p>            
@@ -190,7 +237,7 @@ else
             <div class="page-header">  
 	            <h1>Page header <small>Subtext for header</small></h1>
             </div>
-            <p id="emotionText">Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>          
+            <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>          
             <br />
 
             <h2>Lead copy</h2>
@@ -458,18 +505,7 @@ else
                 </div>
                 <br />
 
-                <h2>Video</h2>
-
-                <article class="flex-video">
-                    <iframe width="560" height="315" src="http://www.youtube.com/embed/e7OYeIXsW60"></iframe>
-                </article>    
-                <br />
-
-                <article class="flex-video">
-                    <iframe width="560" height="315" src="http://player.vimeo.com/video/2203727"></iframe>
-                </article>    
-                <br />
-
+            
                 <h2>Pagination</h2>
 
                 <div class="pagination pagination-large">

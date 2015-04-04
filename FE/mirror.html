@@ -256,6 +256,8 @@
                 var sadAvg = 0;
                 var angryAvg = 0;
                 var surprisedAvg = 0;
+                //Sum of all Avg
+                var sum = 0;
                 var vid = document.getElementById('videoel');
                 var overlay = document.getElementById('overlay');
                 var overlayCC = overlay.getContext('2d');
@@ -273,7 +275,8 @@
                     angryAvg = angrySum / updateNum;
                     surprisedAvg = surprisedSum / updateNum;
                     sadAvg = sadSum / updateNum;
-
+                    sum = happyAvg + angryAvg + sadAvg + surprisedAvg;
+                    console.log(sum);
                     //For now, we are logging. Eventually, we will integrate this by sending information to server.
                     console.log("Happy: " + happyAvg);
                     console.log("Angry: " +angryAvg);
@@ -283,7 +286,12 @@
                     localStorage.setItem("Angry", angryAvg);
                     localStorage.setItem("Surprised", surprisedAvg);
                     localStorage.setItem("Sad", sadAvg);
+                    localStorage.setItem("Sum", sum);
+                    //Let's Send the Percentages to DataBase
+                    //happyAvg/sum * 100 = 
+
                     window.location = 'page.html'
+
                 }
                 
                 /*var insertAltVideo = function(video) {
@@ -441,7 +449,7 @@
                             happySum += data[i].value;
                         }
 
-                        else if (data[i].emotion == "surpised") {
+                        else if (data[i].emotion == "surprised") {
                             surprisedSum += data[i].value;
                         }
 
