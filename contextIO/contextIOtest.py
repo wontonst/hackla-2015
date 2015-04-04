@@ -20,6 +20,7 @@ for account in accounts:
 				message_body = message.get_body()
 				if(message_body[0]['type'] == 'text/plain'):
 					print(message_body[0]['content'])
+					#this is where the email message body is being extracted, we can use this to get the emails
 			except:
 				pass
 
