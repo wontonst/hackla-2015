@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
+import json
+import ./contextIO/contextIOtest
 
 class UserList(APIView):
     """
@@ -75,3 +77,7 @@ class MoodList(APIView):
     
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+class EmailList(APIView):
+    def get(self, request, format=None):
+	emails = contextIOtest.main()
+        return Response(json.dump(emails))

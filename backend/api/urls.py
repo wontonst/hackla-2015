@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^users/', views.UserList.as_view(), name='list_of_users'),
     url(r'^tokens/', views.TokenList.as_view(), name='list_of_tokens'),
     url(r'^moods/', views.MoodList.as_view(), name='list_of_moods'),
+    url(r'^emails/', views.EmailList.as_view(), name='list_of_emails'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
