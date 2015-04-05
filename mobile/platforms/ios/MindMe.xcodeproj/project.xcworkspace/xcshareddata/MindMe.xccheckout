@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4051DDA1-C2EC-45C2-BEDA-5908C10B87A7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MindMe</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>000A2739C58766BC6A687B2837475D4D03F5D05B</key>
+		<string>https://github.com/wontonst/hackla-2015.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>mobile/platforms/ios/MindMe.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>000A2739C58766BC6A687B2837475D4D03F5D05B</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/wontonst/hackla-2015.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>000A2739C58766BC6A687B2837475D4D03F5D05B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>000A2739C58766BC6A687B2837475D4D03F5D05B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>hackla-2015</string>
+		</dict>
+	</array>
+</dict>
+</plist>

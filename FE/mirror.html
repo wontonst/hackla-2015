@@ -51,8 +51,8 @@
                 -ms-filter : fliph; /*IE*/
                 filter : fliph; /*IE*/
 
-                width : 600px;
-                height : 450px;
+                width : 100%;
+                height : 100%;
             }
 
             #videoel {
@@ -62,8 +62,8 @@
                 -ms-filter : fliph; /*IE*/
                 filter : fliph; /*IE*/
 
-                width : 600px;
-                height : 450px;
+                width : 100%;
+                height : 100%;
             }
             
             #container {
@@ -115,7 +115,7 @@
 
             #emotion_chart, #emotion_icons {
                 margin: 0 auto;
-                width : 400px;
+                width : 100%;
             }
 
             #icon1, #icon2, #icon3, #icon4, #icon5, #icon6 {
@@ -178,24 +178,7 @@
                         <div class="nav-collapse collapse">
                             <ul class="nav nav-pills ddmenu">
                                 <li class="dropdown"><a href="index.html">Home</a></li>
-                                <li class="dropdown">
-                                    <a href="page.html" class="dropdown-toggle">Sign Out<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle">Dropdown Item &nbsp;&raquo;</a>
-                                            <ul class="dropdown-menu sub-menu">
-                                                <li><a href="#">Dropdown Item</a></li>
-                                                <li><a href="#">Dropdown Item</a></li>
-                                                <li><a href="#">Dropdown Item</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Dropdown Item</a></li>
-                                        <li><a href="#">Dropdown Item</a></li>
-                                        <li><a href="#">Dropdown Item</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="grid.html">Grid</a></li>
-                                <li class="dropdown active"><a href="simple.html">Simple</a></li>
+                                <li class="dropdown"><a href="https://google.com">Sign Out</a></li>
                             </ul>
                         </div>
                     </div>
@@ -222,21 +205,15 @@
             <div class="row-fluid">
                 <div class="span8" id="divMain">
 
-            <h2>Emotion detection example</h2>
-            <p>This a test of emotion detection based on parameter output from <em>clmtrackr</em>.</p>
+            <h2>Talk to your own perzonalized mirror.</h2>
+            <p>Press Start to begin. As you talk, your emotions will be recorded. When you are done, press "Finish Session".</p>
             <div id="container">
-                <video id="videoel" width="400" height="300" preload="auto" loop>
+                <video id="videoel" width="400" height="200" preload="auto" loop>
                 </video>
-                <canvas id="overlay" width="400" height="300"></canvas>
+                <canvas id="overlay" width="400" height="200"></canvas>
             </div>
-            <canvas id="sketch" width="400" height="300"></canvas>
+            <canvas id="sketch" width="400" height="200"></canvas>
             <div id="emotion_container">
-                <div id="emotion_icons">
-                    <img class="emotion_icon" id="icon1" src="./media/icon_angry.png">
-                    <img class="emotion_icon" id="icon2" src="./media/icon_sad.png">
-                    <img class="emotion_icon" id="icon3" src="./media/icon_surprised.png">
-                    <img class="emotion_icon" id="icon4" src="./media/icon_happy.png">
-                </div>
                 <div id='emotion_chart'></div>
             </div>
             <div id="controls">
@@ -265,6 +242,7 @@
                 /********** check and set up video/webcam **********/
 
                 function enablestart() {
+                    console.log("SCREW JS");
                     var startbutton = document.getElementById('startbutton');
                     startbutton.value = "start";
                     startbutton.disabled = null;
@@ -365,9 +343,9 @@
                     requestAnimFrame(drawLoop);
                     overlayCC.clearRect(0, 0, 400, 300);
                     //psrElement.innerHTML = "score :" + ctrack.getScore().toFixed(4);
-                    if (ctrack.getCurrentPosition()) {
-                        ctrack.draw(overlay);
-                    }
+                   // if (ctrack.getCurrentPosition()) {
+                     //   ctrack.draw(overlay);
+                 //   }
                     var cp = ctrack.getCurrentParameters();
                     
                     var er = ec.meanPredict(cp);
@@ -512,14 +490,6 @@
     </div>
 
                 </div>
-                <div class="span4 sidebar">
-
-                    <div class="sidebox">
-                        <h3 class="sidebox-title">Sample Sidebar Content</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and <a href="http://www.oswt.co.uk/">typesetting industry</a>. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>                       
-                    </div>
-                    
-                </div>
             </div>
 
             <div id="footerInnerSeparator"></div>
@@ -537,41 +507,15 @@
                 
                     <h3>About Company</h3>
 
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>
+                    <p>Learn to be more emotionally aware. Perhaps, you aren't. That's alright! MindMe offers you the insight into your mind that you need.</p>
                     
-                    <p> 
-                        <a href="#" title="Terms of Use">Terms of Use</a><br />
-                        <a href="#" title="Privacy Policy">Privacy Policy</a><br />
-                        <a href="#" title="FAQ">FAQ</a><br />
-                        <a href="#" title="Sitemap">Sitemap</a>
-                    </p>
 
                 </div>
-                <div class="span3" id="footerArea2">
-
-                    <h3>Recent Blog Posts</h3> 
-                    <p>
-                        <a href="http://www.oswt.co.uk/" title="">Lorem Ipsum is simply dummy text</a><br />
-                        <span style="text-transform:none;">2 hours ago</span>
-                    </p>
-                    <p>
-                        <a href="http://www.oswt.co.uk/" title="">Duis mollis, est non commodo luctus</a><br />
-                        <span style="text-transform:none;">5 hours ago</span>
-                    </p>
-                    <p>
-                        <a href="http://www.oswt.co.uk/" title="">Maecenas sed diam eget risus varius</a><br />
-                        <span style="text-transform:none;">19 hours ago</span>
-                    </p>
-                    <p>
-                        <a href="http://www.oswt.co.uk/" title="">VIEW ALL POSTS</a>
-                    </p>
-
-                </div>
+               
                 <div class="span3" id="footerArea3">
 
-                    <h3>Sample Footer Content</h3> 
-                    <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                    <h3>MindMe</h3> 
+                    <p>Customized content, based on how you feel.</p>
 
                 </div>
                 <div class="span3" id="footerArea4">
@@ -608,14 +552,7 @@
             <div class="row-fluid">
                 <div class="span12">
                     <p class="copyright">
-                        Copyright © 2013 Your Company. All Rights Reserved. Thanks to <a href="http://www.oswt.co.uk/">oswt</a>
-                    </p>
-
-                    <p class="social_bookmarks">
-                        <a href="#"><i class="social foundicon-facebook"></i> Facebook</a>
-			<a href="https://twitter.com/oswt"><i class="social foundicon-twitter"></i> Twitter</a>
-			<a href="#"><i class="social foundicon-pinterest"></i> Pinterest</a>
-			<a href="#"><i class="social foundicon-rss"></i> Rss</a>
+                        Copyright © 2013 MindMe. All Rights Reserved. Thanks to <a href="http://www.oswt.co.uk/">oswt</a>
                     </p>
                 </div>
             </div>
