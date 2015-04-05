@@ -26,7 +26,7 @@
   <ItemGroup>
     <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\bin\x64\Debug\DepthBasics-XAML.exe">
       <PackagePath>DepthBasics-XAML.exe</PackagePath>
-      <Modified>2015-04-05T07:02:26.026</Modified>
+      <Modified>2015-04-05T09:08:24.535</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\Assets\Logo.png">
       <PackagePath>Assets\Logo.png</PackagePath>
