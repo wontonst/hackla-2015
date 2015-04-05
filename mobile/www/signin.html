@@ -248,8 +248,9 @@ $.ajax({
 })
   .done(function( data ) {
 console.log(data);
-localStorage.setItem('token', data.token);//jack chekc where the token goes and set it here
-window.location = 'index.html';//uncoment this when done
+localStorage.removeItem('token');
+localStorage.setItem('token', data.token);
+window.location = 'index.html';
   })});
 </script>
 
