@@ -256,7 +256,7 @@ namespace Microsoft.Samples.Kinect.DepthBasics
                 this.elapsedTime += this.deltaTime;
                 if (this.elapsedTime >= 3)
                 {
-                    var result = Windows.System.Launcher.LaunchUriAsync(new Uri("http://ec2-52-10-144-247.us-west-2.compute.amazonaws.com/static/website/index.html"));
+                    var result = Windows.System.Launcher.LaunchUriAsync(new Uri("http://ec2-52-10-144-247.us-west-2.compute.amazonaws.com/"));
                     if (result.Status != null)
                         Application.Current.Exit();
                 }
