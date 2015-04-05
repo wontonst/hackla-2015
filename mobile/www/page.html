@@ -351,7 +351,7 @@ type: 'GET'
   .done(function( data ) {
 console.log(data);
 
-var doughnutData = [
+var doughnutData2 = [
 {
 value: data.angry,
 color:"#F7464A",
@@ -379,9 +379,10 @@ label: "Surprised"
 ];
 window.onload = function(){
 var ctx = document.getElementById("chart-area2").getContext("2d");
-window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
+window.myDoughnut2 = new Chart(ctx).Doughnut(doughnutData2, {responsive : true});
   };
 
+});
 });
 </script>
 
