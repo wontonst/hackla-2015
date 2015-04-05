@@ -273,18 +273,22 @@
 
                 }
 
-                function insertAltVideo(video,file) {
-                    document.getElementById("overlord").innerHTML = "<div id='cont'>ARLOOOOOOOOOO</div>";
-                    vid.addEventListener('canplay', enablestart, false);
+                function insertAltVideo(file) {
+                    console.log(file);
+                    document.getElementById("overlord").innerHTML = "<video id='videoel' width='400' height='200' preload='auto' loop></video>";
+                    vid = document.getElementById('videoel');
                     if (supports_video()) {
                         if (supports_ogg_theora_video()) {
-                            video.src = file;
+                            console.log("Got a OGG video");
+                            vid.src = file;
                         } else if (supports_h264_baseline_video()) {
-                            video.src = file;
+                            console.log("Got a H264 video");
+                            vid.src = file;
+
                         } else {
+                            console.log("Didn't get a video");
                             return false;
                         }
-                        video.play();
                         return true;
                     } else return false;
                 }
@@ -317,17 +321,19 @@
                         alert("There was some problem trying to fetch video from your webcam. If you have a webcam, please make sure to accept when the browser asks for access to your webcam.");
                     });
 
-                    vid.addEventListener('canplay', enablestart, false);
+              
                 } 
 
                 else {
                     //insertAltVideo(vid);
+                    var banana = "HEHEHEHEH JS SUCKS";
+                    var vidId = "videofile";
                     alert("This demo depends on getUserMedia, which your browser does not seem to support. :(");
                     // start video capture
-                    document.getElementById("overlord").innerHTML = "<form><input id='videofile' type='file' name='vid' accept='video/*'><input type='button' onclick = 'insertAltVideo(vid, document.getElementById('videofile').files[0])'></form>";
+                    document.getElementById("overlord").innerHTML = "<form><input id='videofile' type='file'accept='video/*;capture=camcorder'><input type='button' value='Upload' onclick = 'insertAltVideo(document.getElementById(vidId).files[0])'></form>";
                     }
 
-                
+                vid.addEventListener('canplay', enablestart, false);
                 
                 /*********** setup of emotion detection *************/
 
