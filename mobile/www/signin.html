@@ -296,17 +296,17 @@ event.preventDefault();
 var obj = {};
 obj.username=$('#login-username').val();
 obj.password=$('#login-password').val();
-});
+
 $.ajax({
   url: "/api/tokens/",
   data: obj,
-method: 'POST'
+  type: 'POST'
 })
   .done(function( data ) {
 console.log(data);
-//localStorage.setItem('token',);//jack chekc where the token goes and set it here
-//window.location = 'index.html';//uncoment this when done
-  });
+localStorage.setItem('token', data.token);//jack chekc where the token goes and set it here
+window.location = 'index.html';//uncoment this when done
+  })});
 </script>
 
 </body>
