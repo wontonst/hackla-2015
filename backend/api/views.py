@@ -6,6 +6,8 @@ from api.models import Mood
 from api.serializers import MoodSerializer, UserSerializer
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime
 
 @api_view(['GET', 'POST'])
 def users(request):
@@ -57,6 +59,8 @@ def post_tokens(request):
     token = Token.objects.get_or_create(user=user)
     return Response({ 'token': token[0].key })
 
+@api_view(['GET', 'POST'])
+@csrf_exempt
 def moods(request):
     if request.method == 'GET':
         return get_moods(request)
@@ -66,16 +70,20 @@ def moods(request):
 def get_moods(request):
     user = request.user
 
-    moods = Mood.objects.filter(user__exact=user)
+    moods = user.mood_set.all()
     serializer = MoodSerializer(moods, many=True)
     return Response(serializer.data)
 
 def post_moods(request):
     serializer = MoodSerializer(data=request.data)
 
+    serializer.initial_data['user'] = request.user.id
+    serializer.initial_data['time'] = datetime.now()
+
     if not serializer.is_valid():
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     serializer.save()
+
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
