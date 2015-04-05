@@ -341,12 +341,12 @@ window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
 <script>
 $(function(){
 var head = {};
-head.Authorization=localStorage.getItem('token');     
+head.Authorization="Token "+localStorage.getItem('token');     
 $.ajax({
   url: "/api/moods/",
   data: obj,
 header: head,
-method: 'GET'
+type: 'GET'
 })
   .done(function( data ) {
 console.log(data);
