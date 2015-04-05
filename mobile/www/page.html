@@ -345,7 +345,7 @@ head.Authorization="Token "+localStorage.getItem('token');
 $.ajax({
   url: "/api/moods/",
   data: obj,
-header: head,
+headers: head,
 type: 'GET'
 })
   .done(function( data ) {
