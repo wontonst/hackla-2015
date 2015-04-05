@@ -7,61 +7,61 @@
     <SolutionConfiguration>Debug|x64</SolutionConfiguration>
     <PackageArchitecture>x64</PackageArchitecture>
     <PackageIdentityName>62b06cb0-593a-45ed-b8ab-f71b37c21fd5</PackageIdentityName>
-    <IntermediateOutputPath>C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\obj\x64\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>E:\GitHub\LAhacks\DepthBasics-XAML\obj\x64\Debug\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\bin\x64\Debug\AppxManifest.xml">
+    <AppXManifest Include="E:\GitHub\LAhacks\DepthBasics-XAML\bin\x64\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\bin\x64\Debug\DepthBasics-XAML.exe">
+    <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\bin\x64\Debug\DepthBasics-XAML.exe">
       <PackagePath>DepthBasics-XAML.exe</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\Assets\Logo.png">
+    <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\Assets\Logo.png">
       <PackagePath>Assets\Logo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\Assets\SmallLogo.png">
+    <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\Assets\SmallLogo.png">
       <PackagePath>Assets\SmallLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\Assets\SplashScreen.scale-100.png">
+    <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\Assets\SplashScreen.scale-100.png">
       <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\Assets\SplashScreen.scale-140.png">
+    <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\Assets\SplashScreen.scale-140.png">
       <PackagePath>Assets\SplashScreen.scale-140.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\Assets\SplashScreen.scale-180.png">
+    <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\Assets\SplashScreen.scale-180.png">
       <PackagePath>Assets\SplashScreen.scale-180.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\Images\Logo.png">
+    <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\Images\Logo.png">
       <PackagePath>Images\Logo.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\Images\Status.png">
+    <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\Images\Status.png">
       <PackagePath>Images\Status.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\Images\Kinect.ico">
+    <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\Images\Kinect.ico">
       <PackagePath>Images\Kinect.ico</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\bin\x64\Debug\App.xaml">
+    <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\bin\x64\Debug\App.xaml">
       <PackagePath>App.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\bin\x64\Debug\Common\StandardStyles.xaml">
+    <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\bin\x64\Debug\Common\StandardStyles.xaml">
       <PackagePath>Common\StandardStyles.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\bin\x64\Debug\MainPage.xaml">
+    <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\bin\x64\Debug\MainPage.xaml">
       <PackagePath>MainPage.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Samples\WinRT\DepthBasics-XAML\bin\x64\Debug\resources.pri">
+    <AppxPackagedFile Include="E:\GitHub\LAhacks\DepthBasics-XAML\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>

@@ -246,9 +246,9 @@ namespace Microsoft.Samples.Kinect.DepthBasics
                 // Write out alpha byte                        
                 this.depthPixels[colorPixelIndex++] = 255;
             }
-            if(k>1200)
+            if(k>2000)
             {
-                var result = Windows.System.Launcher.LaunchUriAsync(new Uri("http://www.google.com"));
+                var result = Windows.System.Launcher.LaunchUriAsync(new Uri("file://E:/GitHub/LAhacks/mobile/www/mirror.html"));
                 if(result.Status != null)
                     Application.Current.Exit();
             }

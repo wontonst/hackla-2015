@@ -21,11 +21,13 @@ for account in accounts:
 		for message in account.get_messages():
 			try :
 				message_body = message.get_body()
+				#print(message_body[0]['type'])
 				if(message_body[0]['type'] == 'text/plain'):
-					#print(message_body[0]['content'])
+					#print(len(message_body[0]['content']))
 					request_data = Counter()
 					request_data['txt'] = message_body[0]['content']
 					r = requests.post('http://sentiment.vivekn.com/api/text/',data=request_data)
+					#print('1')
 					if(r):
 						print(r.json()['result']['sentiment'])
 					#this is where the email message body is being extracted, we can use this to get the emails
