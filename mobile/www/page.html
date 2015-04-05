@@ -76,7 +76,7 @@ setTimeout('document.getElementById(\'scrnewsblock69571350\').src = (document.lo
 function doLoad() {
    var fieldNameElement = document.getElementById("emotionText");
    console.log(localStorage.getItem("Sum"));
-   fieldNameElement.innerHTML = "<span class='label label-success'>Happy</span>" + "   "+ Math.round(localStorage.getItem("Happy")/localStorage.getItem("Sum") * 100) + " %" + "<br>" + "<span class='label label-important'>Angry</span>"+"   " + Math.round(localStorage.getItem("Angry")/localStorage.getItem("Sum") * 100)+ " %"+ "<br>" + "<span class='label label-warning'>Sad</span>"+ "   " + Math.round(localStorage.getItem("Sad")/localStorage.getItem("Sum")*100) + " %" + "<br>" + "<span class='label label-default'>Surprised</span>"+ "   " + Math.round(localStorage.getItem("Surprised")/localStorage.getItem("Sum")*100);
+   fieldNameElement.innerHTML = "<span class='label label-success'>Happy</span>" + "   "+ Math.round(localStorage.getItem("Happy")/localStorage.getItem("Sum") * 100) + " %" + "<br>" + "<span class='label label-important'>Angry</span>"+"   " + Math.round(localStorage.getItem("Angry")/localStorage.getItem("Sum") * 100)+ " %"+ "<br>" + "<span class='label label-warning'>Sad</span>"+ "   " + Math.round(localStorage.getItem("Sad")/localStorage.getItem("Sum")*100) + " %" + "<br>" + "<span class='label label-default'>Surprised</span>"+ "   " + Math.round(localStorage.getItem("Surprised")/localStorage.getItem("Sum")*100)+" %";
 
     
     var emotionDis = document.getElementById("moodDisplay");
@@ -395,7 +395,7 @@ window.myDoughnut2 = new Chart(ctx).Doughnut(doughnutData2, {responsive : true})
 
 
    var fieldNameElement = document.getElementById("emotionTexts");
-   fieldNameElement.innerHTML = "<span class='label label-success'>Happy</span>" + "   "+ Math.round(happy/sum * 100) + " %" + "<br>" + "<span class='label label-important'>Angry</span>"+"   " + Math.round(angry/sum * 100)+ " %"+ "<br>" + "<span class='label label-warning'>Sad</span>"+ "   " + Math.round(localStorage.getItem(sad/sum*100) + " %" + "<br>" + "<span class='label label-default'>Surprised</span>"+ "   " + Math.round(surprised/sum*100);
+   fieldNameElement.innerHTML = "<span class='label label-success'>Happy</span>" + "   "+ Math.round(happy/sum * 100) + " %" + "<br>" + "<span class='label label-important'>Angry</span>"+"   " + Math.round(angry/sum * 100)+ " %"+ "<br>" + "<span class='label label-warning'>Sad</span>"+ "   " + Math.round(localStorage.getItem(sad/sum*100) + " %" + "<br>" + "<span class='label label-default'>Surprised</span>"+ "   " + Math.round(surprised/sum*100) + " %";
 });
 });
 </script>
