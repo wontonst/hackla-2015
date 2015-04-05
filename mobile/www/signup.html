@@ -304,15 +304,16 @@ obj.last_name=$('#form_last_name').val();
 obj.password=$('#form_password').val();
 obj.email=$('#form_email').val();
 console.log(obj);
-});
+
 $.ajax({
   url: "/api/users/",
-  data: obj
+  data: obj,
+  type: 'POST'
 })
   .done(function( data ) {
     console.log('got data back, time to redirect to login page or success page TODO');
 window.location = 'signin.html';
-  });
+  })});
 </script>
 
 
