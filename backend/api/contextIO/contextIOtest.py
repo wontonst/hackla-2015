@@ -34,7 +34,7 @@ def main():
     					#print('1')
                         if(r):
                             sentiment = r.json()['result']['sentiment']
-                            list.append((message_body[0]['content'], sentiment))
+                            list.append({ 'text': email_body, 'sentiment': sentiment})
     					    #this is where the email message body is being extracted, we can use this to get the emails
                 except:
                     pass

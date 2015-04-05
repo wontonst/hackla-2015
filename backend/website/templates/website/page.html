@@ -248,6 +248,21 @@ window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
                         </div>
 </div>
 </div>
+                    <div class="tab-pane fade in active">
+                       <div class="hero-unit">
+                         <h1>My Email Readings</h1>
+                         <table>
+                            <thead>
+                                <tr>
+                                    <th>Text</th>
+                                    <th>Sentiment</th>
+                                </tr>
+                            </thead>
+                            <tbody id="emails">
+                            </tbody>
+                         </table>
+                       </div>
+                    </div>
             </div> 
            </div>
 
@@ -399,7 +414,17 @@ window.myDoughnut2 = new Chart(ctx).Doughnut(doughnutData2, {responsive : true})
 });
 });
 </script>
-
-
+<script>
+$(document).ready(function() {
+    $.getJSON('/api/emails/', function(data) {
+        $.each(data, function(i, val) {
+            $('#emails').append(
+                $('<tr>')
+                .append($('<td>').text(val.text))
+                .append($('<td>').text(val.sentiment)));
+        });
+    });
+});
+</script>
 </body>
 </html>

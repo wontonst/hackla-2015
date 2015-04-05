@@ -80,4 +80,4 @@ class MoodList(APIView):
 class EmailList(APIView):
     def get(self, request, format=None):
         emails = contextIOtest.main()
-        return Response(json.dumps(emails))
+        return Response(emails)
