@@ -241,6 +241,7 @@ window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
 <div class='hero-unit'>
                         <h1>My All Time Mirror Readings</h1>
                         <br>  
+                        <p id="emotionText2">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content.</p>  
                         <div id="canvas-holder">
                             <canvas id="chart-area2" width="150" height="150"/>
                         </div>
@@ -344,34 +345,44 @@ var head = {};
 head.Authorization="Token "+localStorage.getItem('token');     
 $.ajax({
   url: "/api/moods/",
-  data: obj,
 headers: head,
 type: 'GET'
 })
   .done(function( data ) {
 console.log(data);
 
+var angry=0;
+var sad=0;
+var surprised=0;
+var happy=0;
+for(var i = 0 ; i != data.length; i++){
+happy += data[i].happy;
+sad += data[i].sad;
+angry += data[i].angry;
+surprised += data[i].surprised;
+}
+
 var doughnutData2 = [
 {
-value: data.angry,
+value: angry,
 color:"#F7464A",
 highlight: "#FF5A5E",
 label: "Angry"
 },
 {
-value: data.happy,
+value: happy,
 color: "#006600",
 highlight: "#5AD3D1",
 label: "Happy"
 },
 {
-value: data.sad,
+value: sad,
 color: "#FDB45C",
 highlight: "#FFC870",
 label: "Sad"
 },
 {
-value: data.surprised,
+value: surprised,
 color: "#949FB1",
 highlight: "#A8B3C5",
 label: "Surprised"
@@ -382,6 +393,9 @@ var ctx = document.getElementById("chart-area2").getContext("2d");
 window.myDoughnut2 = new Chart(ctx).Doughnut(doughnutData2, {responsive : true});
   };
 
+
+   var fieldNameElement = document.getElementById("emotionTexts");
+   fieldNameElement.innerHTML = "<span class='label label-success'>Happy</span>" + "   "+ Math.round(happy/sum * 100) + " %" + "<br>" + "<span class='label label-important'>Angry</span>"+"   " + Math.round(angry/sum * 100)+ " %"+ "<br>" + "<span class='label label-warning'>Sad</span>"+ "   " + Math.round(localStorage.getItem(sad/sum*100) + " %" + "<br>" + "<span class='label label-default'>Surprised</span>"+ "   " + Math.round(surprised/sum*100);
 });
 });
 </script>
