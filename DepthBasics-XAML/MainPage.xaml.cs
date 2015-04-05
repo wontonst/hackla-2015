@@ -72,6 +72,10 @@ namespace Microsoft.Samples.Kinect.DepthBasics
         /// </summary>
         private string statusText = null;
 
+        private float elapsedTime = 0.0f;
+
+        private float deltaTime = 0.03f;
+
         /// <summary>
         /// Initializes a new instance of the MainPage class.
         /// </summary>
@@ -247,12 +251,18 @@ namespace Microsoft.Samples.Kinect.DepthBasics
                 // Write out alpha byte                        
                 this.depthPixels[colorPixelIndex++] = 255;
             }
-            if(k>45000)
+            if (k > 45000)
             {
-                var result = Windows.System.Launcher.LaunchUriAsync(new Uri("http://ec2-52-10-144-247.us-west-2.compute.amazonaws.com/static/website/index.html"));
-                if(result.Status != null)
-                   Application.Current.Exit();
+                this.elapsedTime += this.deltaTime;
+                if (this.elapsedTime >= 3)
+                {
+                    var result = Windows.System.Launcher.LaunchUriAsync(new Uri("http://ec2-52-10-144-247.us-west-2.compute.amazonaws.com/static/website/index.html"));
+                    if (result.Status != null)
+                        Application.Current.Exit();
+                }
             }
+            else
+                this.elapsedTime = 0.0f;
         }
 
         /// <summary>
