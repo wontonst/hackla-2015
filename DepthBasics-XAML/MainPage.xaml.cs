@@ -194,7 +194,7 @@ namespace Microsoft.Samples.Kinect.DepthBasics
 
                         // Note: In order to see the full range of depth (including the less reliable far field depth)
                         // we are setting maxDepth to the extreme potential depth threshold
-                        maxDepth = ushort.MaxValue;
+                        maxDepth = 1000;
 
                         // If you wish to filter by reliable depth distance, uncomment the following line:
                         //// maxDepth = depthFrame.DepthMaxReliableDistance
@@ -233,7 +233,8 @@ namespace Microsoft.Samples.Kinect.DepthBasics
                 // To convert to a byte, we're mapping the depth value to the byte range.
                 // Values outside the reliable depth range are mapped to 0 (black).
                 byte intensity = (byte)(depth >= minDepth && depth <= maxDepth ? (depth / MapDepthToByte) : 0);
-
+                intensity--;
+                intensity--;
                 // Write out blue byte
                 this.depthPixels[colorPixelIndex++] = intensity;
 
@@ -246,11 +247,11 @@ namespace Microsoft.Samples.Kinect.DepthBasics
                 // Write out alpha byte                        
                 this.depthPixels[colorPixelIndex++] = 255;
             }
-            if(k>2000)
+            if(k>45000)
             {
-                var result = Windows.System.Launcher.LaunchUriAsync(new Uri("file://E:/GitHub/LAhacks/mobile/www/mirror.html"));
+                var result = Windows.System.Launcher.LaunchUriAsync(new Uri("http://ec2-52-10-144-247.us-west-2.compute.amazonaws.com/static/website/index.html"));
                 if(result.Status != null)
-                    Application.Current.Exit();
+                   Application.Current.Exit();
             }
         }
 

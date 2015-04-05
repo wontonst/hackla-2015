@@ -361,7 +361,7 @@ sad += data[i].sad;
 angry += data[i].angry;
 surprised += data[i].surprised;
 }
-
+var sum = sad+angry+surprised+happy;
 var doughnutData2 = [
 {
 value: angry,
@@ -388,14 +388,13 @@ highlight: "#A8B3C5",
 label: "Surprised"
 }
 ];
-window.onload = function(){
 var ctx = document.getElementById("chart-area2").getContext("2d");
 window.myDoughnut2 = new Chart(ctx).Doughnut(doughnutData2, {responsive : true});
-  };
 
 
-   var fieldNameElement = document.getElementById("emotionTexts");
-   fieldNameElement.innerHTML = "<span class='label label-success'>Happy</span>" + "   "+ Math.round(happy/sum * 100) + " %" + "<br>" + "<span class='label label-important'>Angry</span>"+"   " + Math.round(angry/sum * 100)+ " %"+ "<br>" + "<span class='label label-warning'>Sad</span>"+ "   " + Math.round(localStorage.getItem(sad/sum*100) + " %" + "<br>" + "<span class='label label-default'>Surprised</span>"+ "   " + Math.round(surprised/sum*100) + " %";
+   var fieldNameElement = document.getElementById("emotionText2");
+   fieldNameElement.innerHTML = "<span class='label label-success'>Happy</span>" + "   "+ Math.round(happy/sum * 100) + " %" + "<br>" + "<span class='label label-important'>Angry</span>"+"   " + Math.round(angry/sum * 100)+ " %"+ "<br>" + "<span class='label label-warning'>Sad</span>"+ "   " + Math.round(sad/sum*100) + " %" + "<br>" + "<span class='label label-default'>Surprised</span>"+ "   " + Math.round(surprised/sum*100) + " %";
+//console.log(fieldNameElement.innerHTML);
 });
 });
 </script>
