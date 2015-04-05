@@ -277,7 +277,7 @@ head.Authorization=localStorage.getItem('token');
 $.ajax({
   url: "/api/moods/",
   header: head,
-method: 'POST',
+type: 'POST',
 data: obj
 })
   .done(function( data ) {
