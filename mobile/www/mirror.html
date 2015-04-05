@@ -266,11 +266,25 @@
                     localStorage.setItem("Surprised", surprisedAvg);
                     localStorage.setItem("Sad", sadAvg);
                     localStorage.setItem("Sum", sum);
-                    //TODO: Let's Send the Percentages to DataBase
-                    //happyAvg/sum * 100 = 
-
+         
+var obj ={};
+obj.angry=angryAvg;
+obj.happy=happyAvg;
+obj.surprised=surprisedAvg;
+obj.sad=sadAvg;      
+var head = {};
+head.Authorization="Token "+localStorage.getItem('token');     
+console.log(head);
+console.log(obj);
+$.ajax({
+  url: "/api/moods/",
+  headers: head,
+type: 'POST',
+data: obj
+})
+  .done(function( data ) {
                     window.location = 'page.html'
-
+  });
                 }
 
                 function insertAltVideo(file) {
