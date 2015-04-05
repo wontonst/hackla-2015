@@ -207,12 +207,12 @@
 
             <h2>Talk to your own perzonalized mirror.</h2>
             <p>Press Start to begin. As you talk, your emotions will be recorded. When you are done, press "Finish Session".</p>
-            <div id="container">
+            <!--<div id="container">-->
                 <div id="overlord">
                 <video id="videoel" width="400" height="200" preload="auto" loop>
                 </video>
                <!-- <canvas id="overlay" width="400" height="200"></canvas>-->
-            </div>
+            <!--</div>-->
             </div>
             <canvas id="sketch" width="400" height="200"></canvas>
             <div id="emotion_container">
@@ -266,28 +266,34 @@
                     localStorage.setItem("Surprised", surprisedAvg);
                     localStorage.setItem("Sad", sadAvg);
                     localStorage.setItem("Sum", sum);
-                    //Let's Send the Percentages to DataBase
+                    //TODO: Let's Send the Percentages to DataBase
                     //happyAvg/sum * 100 = 
 
                     window.location = 'page.html'
 
                 }
 
-                var insertAltVideo = function(video,file) {
-                    document.getElementById("overlord").innerHTML = "<div id='cont'>ARLOOOOOOOOOO</div>";
-                    vid.addEventListener('canplay', enablestart, false);
+                function insertAltVideo(file) {
+                    console.log(file);
+                    document.getElementById("overlord").innerHTML = "<video id='videoel' width='400' height='200' preload='auto' loop></video>";
+                    vid = document.getElementById('videoel');
                     if (supports_video()) {
                         if (supports_ogg_theora_video()) {
-                            video.src = file;
+                            console.log("Got a OGG video");
+                            vid.src = file;
                         } else if (supports_h264_baseline_video()) {
-                            video.src = file;
+                            console.log("Got a H264 video");
+                            vid.src = file;
+
                         } else {
+                            console.log("Didn't get a video");
                             return false;
                         }
-                        video.play();
                         return true;
                     } else return false;
                 }
+
+
                 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
                 window.URL = window.URL || window.webkitURL || window.msURL || window.mozURL;
 
@@ -315,18 +321,19 @@
                         alert("There was some problem trying to fetch video from your webcam. If you have a webcam, please make sure to accept when the browser asks for access to your webcam.");
                     });
 
-                    vid.addEventListener('canplay', enablestart, false);
+              
                 } 
 
                 else {
                     //insertAltVideo(vid);
+                    var banana = "HEHEHEHEH JS SUCKS";
+                    var vidId = "videofile";
                     alert("This demo depends on getUserMedia, which your browser does not seem to support. :(");
                     // start video capture
-                    document.getElementById("overlord").innerHTML = "<form><input id='videofile' type='file' name='vid' accept='video/*'><input type='button' onclick = 'insertAltVideo(vid, document.getElementById('videofile').files[0])'></form>";
-                    
-                }
+                    document.getElementById("overlord").innerHTML = "<form><input id='videofile' type='file'accept='video/*;capture=camcorder'><input type='button' value='Upload' onclick = 'insertAltVideo(document.getElementById(vidId).files[0])'></form>";
+                    }
 
-                
+                vid.addEventListener('canplay', enablestart, false);
                 
                 /*********** setup of emotion detection *************/
 
@@ -484,7 +491,7 @@
                 stats = new Stats();
                 stats.domElement.style.position = 'absolute';
                 stats.domElement.style.top = '0px';
-                document.getElementById('container').appendChild( stats.domElement );
+                document.getElementById('overlord').appendChild( stats.domElement );
 
                 // update stats on every iteration
                 document.addEventListener('clmtrackrIteration', function(event) {

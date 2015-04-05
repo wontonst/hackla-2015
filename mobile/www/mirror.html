@@ -287,18 +287,22 @@ data: obj
   });
                 }
 
-                function insertAltVideo(video,file) {
-                    document.getElementById("overlord").innerHTML = "<div id='cont'>ARLOOOOOOOOOO</div>";
-                    vid.addEventListener('canplay', enablestart, false);
+                function insertAltVideo(file) {
+                    console.log(file);
+                    document.getElementById("overlord").innerHTML = "<video id='videoel' width='400' height='200' preload='auto' loop></video>";
+                    vid = document.getElementById('videoel');
                     if (supports_video()) {
                         if (supports_ogg_theora_video()) {
-                            video.src = file;
+                            console.log("Got a OGG video");
+                            vid.src = file;
                         } else if (supports_h264_baseline_video()) {
-                            video.src = file;
+                            console.log("Got a H264 video");
+                            vid.src = file;
+
                         } else {
+                            console.log("Didn't get a video");
                             return false;
                         }
-                        video.play();
                         return true;
                     } else return false;
                 }
@@ -331,17 +335,19 @@ data: obj
                         alert("There was some problem trying to fetch video from your webcam. If you have a webcam, please make sure to accept when the browser asks for access to your webcam.");
                     });
 
-                    vid.addEventListener('canplay', enablestart, false);
+              
                 } 
 
                 else {
                     //insertAltVideo(vid);
+                    var banana = "HEHEHEHEH JS SUCKS";
+                    var vidId = "videofile";
                     alert("This demo depends on getUserMedia, which your browser does not seem to support. :(");
                     // start video capture
-                    document.getElementById("overlord").innerHTML = "<form><input id='videofile' type='file' name='vid' accept='video/*'><input type='button' onclick = 'insertAltVideo(vid, document.getElementById('videofile').files[0])'></form>";
+                    document.getElementById("overlord").innerHTML = "<form><input id='videofile' type='file'accept='video/*;capture=camcorder'><input type='button' value='Upload' onclick = 'insertAltVideo(document.getElementById(vidId).files[0])'></form>";
                     }
 
-                
+                vid.addEventListener('canplay', enablestart, false);
                 
                 /*********** setup of emotion detection *************/
 
@@ -552,23 +558,14 @@ data: obj
                         <i class="general foundicon-phone icon"></i>
                         <span class="field">Phone:</span>
                         <br />
-                        (123) 456 7890 / 456 7891                                                                      
+                        (858) 900-4077                                                                     
                     </li>
                     <li>
                         <i class="general foundicon-mail icon"></i>
                         <span class="field">Email:</span>
                         <br />
-                        <a href="mailto:info@yourdomain.com" title="Email">info@yourdomain.com</a>
-                    </li>
-                    <li>
-                        <i class="general foundicon-home icon" style="margin-bottom:50px"></i>
-                        <span class="field">Address:</span>
-                        <br />
-                        123 Street<br />
-                        12345 City, State<br />
-                        Country
-                    </li>
-                    </ul>
+                        <a href="mailto:uschackathonteam@gmail.com" title="Email">uschackathonteam@gmail.com</a>
+                    </li>                    </ul>
 
                 </div>
             </div>
@@ -577,7 +574,7 @@ data: obj
             <div class="row-fluid">
                 <div class="span12">
                     <p class="copyright">
-                        Copyright © 2013 MindMe. All Rights Reserved. Thanks to <a href="http://www.oswt.co.uk/">oswt</a>
+                        Copyright © 2015 MindMe. All Rights Reserved. Thanks to <a href="http://www.oswt.co.uk/">oswt</a>
                     </p>
                 </div>
             </div>
