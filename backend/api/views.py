@@ -34,8 +34,8 @@ def post_users(request):
     if user is None:
         return Response({'error': 'Could not create user'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    serializer = UserSerializer(users, many=False)
-    return Response(serializer.data)
+    serializer = UserSerializer(user, many=False)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
 def tokens(request):
