@@ -7,7 +7,8 @@ from django.contrib.auth import authenticate, login
 # Create your views here.
 def index(request):
     template = loader.get_template('website/index.html')
-    return HttpResponse(template.render())
+    c = RequestContext(request, {})
+    return HttpResponse(template.render(c))
 
 def signup(request):
     if request.method == 'GET':
